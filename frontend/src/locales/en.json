@@ -1,0 +1,53 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "hello": "Hello"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "loginError": "Invalid email or password",
+    "loginSuccess": "Logged in successfully",
+    "logoutSuccess": "Logged out successfully"
+  },
+  "navigation": {
+    "home": "Home",
+    "todos": "Todos",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "todos": {
+    "title": "Todos",
+    "createTodo": "Create Todo",
+    "editTodo": "Edit Todo",
+    "todoTitle": "Title",
+    "todoDescription": "Description",
+    "completed": "Completed",
+    "pending": "Pending",
+    "noTodos": "No todos found",
+    "createSuccess": "Todo created successfully",
+    "updateSuccess": "Todo updated successfully",
+    "deleteSuccess": "Todo deleted successfully",
+    "deleteConfirm": "Are you sure you want to delete this todo?"
+  },
+  "language": {
+    "selectLanguage": "Select Language",
+    "english": "English",
+    "vietnamese": "Vietnamese"
+  }
+}

@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # Database
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-fullstack_db}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/migrations:/migrations
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DB_HOST=db
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - dev
+      - prod
+
+  # Frontend (Development)
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost/api
+    profiles:
+      - dev
+
+  # Frontend (Production Build)
+  frontend-build:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - frontend-dist:/app/dist
+    profiles:
+      - prod
+
+  # Nginx Reverse Proxy
+  nginx:
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    volumes:
+      - frontend-dist:/usr/share/nginx/html:ro
+    profiles:
+      - prod
+
+  # Nginx for Development
+  nginx-dev:
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile.nginx.dev
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend-dev
+    profiles:
+      - dev
+
+volumes:
+  pgdata:
+  frontend-dist:

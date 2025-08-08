@@ -1,0 +1,53 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "create": "Tạo",
+    "update": "Cập nhật",
+    "confirm": "Xác nhận",
+    "yes": "Có",
+    "no": "Không",
+    "ok": "OK",
+    "hello": "Xin chào"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "loginButton": "Đăng nhập",
+    "loginError": "Email hoặc mật khẩu không đúng",
+    "loginSuccess": "Đăng nhập thành công",
+    "logoutSuccess": "Đăng xuất thành công"
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "todos": "Công việc",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt"
+  },
+  "todos": {
+    "title": "Công việc",
+    "createTodo": "Tạo công việc",
+    "editTodo": "Sửa công việc",
+    "todoTitle": "Tiêu đề",
+    "todoDescription": "Mô tả",
+    "completed": "Hoàn thành",
+    "pending": "Chưa hoàn thành",
+    "noTodos": "Không có công việc nào",
+    "createSuccess": "Tạo công việc thành công",
+    "updateSuccess": "Cập nhật công việc thành công",
+    "deleteSuccess": "Xóa công việc thành công",
+    "deleteConfirm": "Bạn có chắc chắn muốn xóa công việc này?"
+  },
+  "language": {
+    "selectLanguage": "Chọn ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  }
+}

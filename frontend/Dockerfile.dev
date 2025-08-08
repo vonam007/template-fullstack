@@ -1,0 +1,33 @@
+# Development stage
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies for development
+RUN apk add --no-cache git
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Create non-root user
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup
+
+# Change ownership
+RUN chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+
+# Expose port for Vite dev server
+EXPOSE 5173
+
+# Start development server
+CMD ["npm", "run", "dev"]
